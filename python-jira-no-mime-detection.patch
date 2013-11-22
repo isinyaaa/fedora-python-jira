@@ -1,0 +1,37 @@
+From d4d10bd932ba1fb2a6ce279cae235693caadeb5c Mon Sep 17 00:00:00 2001
+From: Ralph Bean <rbean@redhat.com>
+Date: Fri, 22 Nov 2013 11:21:43 -0500
+Subject: [PATCH] Patch out mime detection.
+
+---
+ jira/client.py | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/jira/client.py b/jira/client.py
+index 6a8c2f9..a3693d3 100644
+--- a/jira/client.py
++++ b/jira/client.py
+@@ -1432,11 +1432,15 @@ class JIRA(object):
+         return resource
+ 
+     def _try_magic(self):
+-        try:
+-            import magic
+-            self._magic = magic.Magic(mime=True)
+-        except ImportError:
+-            self._magic = None
++        # This is patched out for Fedora because python-jira is expecting a
++        # different magic module than the one we ship.  See:
++        # https://bugzilla.redhat.com/show_bug.cgi?id=1025368#c11
++        self._magic = None
++        #try:
++        #    import magic
++        #    self._magic = magic.Magic(mime=True)
++        #except ImportError:
++        #    self._magic = None
+ 
+     def _get_mime_type(self, buff):
+         if self._magic is not None:
+-- 
+1.8.4.2
+

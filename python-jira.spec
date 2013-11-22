@@ -4,13 +4,14 @@
 
 Name:               python-jira
 Version:            0.13
-Release:            2%{?dist}
+Release:            3%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs.
 
 Group:              Development/Libraries
 License:            BSD
 URL:                http://pypi.python.org/pypi/jira-python
 Source0:            http://pypi.python.org/packages/source/j/%{distname}/%{distname}-%{version}.tar.gz
+Patch0:             python-jira-no-mime-detection.patch
 
 BuildArch:          noarch
 
@@ -34,6 +35,7 @@ A library to ease use of the JIRA 5 REST APIs.
 
 %prep
 %setup -q -n %{distname}-%{version}
+%patch0 -p1
 
 # Remove bundled egg-info in case it exists
 rm -rf %{distname}.egg-info
@@ -64,6 +66,9 @@ rm -rf %{buildroot}%{python2_sitelib}/tools/
 
 
 %changelog
+* Fri Nov 22 2013 Ralph Bean <rbean@redhat.com> - 0.13-3
+- Patch out mime type detection as per review feedback.
+
 * Fri Nov 01 2013 Ralph Bean <rbean@redhat.com> - 0.13-2
 - Modernize python2 rpm macros.
 
