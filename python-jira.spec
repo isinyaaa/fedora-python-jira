@@ -4,7 +4,7 @@
 
 Name:               python-jira
 Version:            0.13
-Release:            3%{?dist}
+Release:            4%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs.
 
 Group:              Development/Libraries
@@ -66,6 +66,9 @@ rm -rf %{buildroot}%{python2_sitelib}/tools/
 
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.13-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Fri Nov 22 2013 Ralph Bean <rbean@redhat.com> - 0.13-3
 - Patch out mime type detection as per review feedback.
 
