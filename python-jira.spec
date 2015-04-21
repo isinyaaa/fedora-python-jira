@@ -4,7 +4,7 @@
 
 Name:               python-jira
 Version:            0.13
-Release:            4%{?dist}
+Release:            5%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs.
 
 Group:              Development/Libraries
@@ -22,13 +22,13 @@ BuildRequires:      python-requests
 BuildRequires:      python-requests-oauthlib
 BuildRequires:      python-tlslite
 BuildRequires:      python-magic
-BuildRequires:      ipython
+BuildRequires:      python-ipython-console
 
 Requires:           python-requests
 Requires:           python-requests-oauthlib
 Requires:           python-tlslite
 Requires:           python-magic
-Requires:           ipython
+Requires:           python-ipython-console
 
 %description
 A library to ease use of the JIRA 5 REST APIs.
@@ -36,6 +36,8 @@ A library to ease use of the JIRA 5 REST APIs.
 %prep
 %setup -q -n %{distname}-%{version}
 %patch0 -p1
+
+sed -i 's/tools.jirashell/jira.tools.jirashell/g' setup.py
 
 # Remove bundled egg-info in case it exists
 rm -rf %{distname}.egg-info
@@ -46,9 +48,11 @@ rm -rf %{distname}.egg-info
 %install
 %{__python2} setup.py install -O1 --skip-build --root=%{buildroot}
 
+# Move this into the jira namespace.  It gets fixed in a more modern version.
+mv %{buildroot}%{python2_sitelib}/tools/ %{buildroot}%{python2_sitelib}/jira/tools/
+
 # Why does it even install these?  A mistake.
 rm -rf %{buildroot}%{python2_sitelib}/tests/
-rm -rf %{buildroot}%{python2_sitelib}/tools/
 
 
 # The tests could be run with nosetests, but they require hardcoded
@@ -66,6 +70,10 @@ rm -rf %{buildroot}%{python2_sitelib}/tools/
 
 
 %changelog
+* Tue Apr 21 2015 Ralph Bean <rbean@redhat.com> - 0.13-5
+- Change dep from the ipython meta package to just python-ipython-console.
+- Move the /tools/ module into the jira namespace to avoid potential conflict.
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.13-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
