@@ -4,7 +4,7 @@
 
 Name:               python-jira
 Version:            0.13
-Release:            5%{?dist}
+Release:            6%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs.
 
 Group:              Development/Libraries
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python2_sitelib}/tests/
 
 
 %changelog
+* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.13-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Tue Apr 21 2015 Ralph Bean <rbean@redhat.com> - 0.13-5
 - Change dep from the ipython meta package to just python-ipython-console.
 - Move the /tools/ module into the jira namespace to avoid potential conflict.
