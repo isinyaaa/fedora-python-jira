@@ -1,15 +1,15 @@
 %global modname jira
-%global distname jira-python
-%global eggname jira_python
+%global distname jira
+%global eggname jira
 
 Name:               python-jira
 Version:            0.13
-Release:            6%{?dist}
+Release:            7%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs.
 
 Group:              Development/Libraries
 License:            BSD
-URL:                http://pypi.python.org/pypi/jira-python
+URL:                http://pypi.python.org/pypi/%{distname}
 Source0:            http://pypi.python.org/packages/source/j/%{distname}/%{distname}-%{version}.tar.gz
 Patch0:             python-jira-no-mime-detection.patch
 
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python2_sitelib}/tests/
 
 
 %changelog
+* Mon Nov 30 2015 Ralph Bean <rbean@redhat.com> - 0.13-7
+- Fix upstream url for https://bugzilla.redhat.com/1285760
+
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.13-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
