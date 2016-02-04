@@ -4,7 +4,7 @@
 
 Name:               python-jira
 Version:            0.13
-Release:            7%{?dist}
+Release:            8%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs.
 
 Group:              Development/Libraries
@@ -70,6 +70,9 @@ rm -rf %{buildroot}%{python2_sitelib}/tests/
 
 
 %changelog
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.13-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Mon Nov 30 2015 Ralph Bean <rbean@redhat.com> - 0.13-7
 - Fix upstream url for https://bugzilla.redhat.com/1285760
 
