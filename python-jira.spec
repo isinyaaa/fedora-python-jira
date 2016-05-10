@@ -3,14 +3,14 @@
 %global eggname jira
 
 Name:               python-jira
-Version:            0.13
-Release:            8%{?dist}
+Version:            0.50
+Release:            1%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs.
 
 Group:              Development/Libraries
 License:            BSD
-URL:                http://pypi.python.org/pypi/%{distname}
-Source0:            http://pypi.python.org/packages/source/j/%{distname}/%{distname}-%{version}.tar.gz
+URL:                https://pypi.io/project/%{distname}
+Source0:            https://pypi.io/packages/source/j/%{distname}/%{distname}-%{version}.tar.gz
 Patch0:             python-jira-no-mime-detection.patch
 
 BuildArch:          noarch
@@ -20,15 +20,21 @@ BuildRequires:      python-setuptools
 
 BuildRequires:      python-requests
 BuildRequires:      python-requests-oauthlib
+BuildRequires:      python-requests-toolbelt
 BuildRequires:      python-tlslite
 BuildRequires:      python-magic
 BuildRequires:      python-ipython-console
+BuildRequires:      python-pytest
+BuildRequires:      python-six
+
 
 Requires:           python-requests
 Requires:           python-requests-oauthlib
+Requires:           python-requests-toolbelt
 Requires:           python-tlslite
 Requires:           python-magic
 Requires:           python-ipython-console
+Requires:           python-six
 
 %description
 A library to ease use of the JIRA 5 REST APIs.
@@ -38,6 +44,7 @@ A library to ease use of the JIRA 5 REST APIs.
 %patch0 -p1
 
 sed -i 's/tools.jirashell/jira.tools.jirashell/g' setup.py
+sed -i "s/'ordereddict'//" setup.py
 
 # Remove bundled egg-info in case it exists
 rm -rf %{distname}.egg-info
@@ -47,9 +54,6 @@ rm -rf %{distname}.egg-info
 
 %install
 %{__python2} setup.py install -O1 --skip-build --root=%{buildroot}
-
-# Move this into the jira namespace.  It gets fixed in a more modern version.
-mv %{buildroot}%{python2_sitelib}/tools/ %{buildroot}%{python2_sitelib}/jira/tools/
 
 # Why does it even install these?  A mistake.
 rm -rf %{buildroot}%{python2_sitelib}/tests/
@@ -70,6 +74,9 @@ rm -rf %{buildroot}%{python2_sitelib}/tests/
 
 
 %changelog
+* Tue May 10 2016 Ralph Bean <rbean@redhat.com> - 0.50-1
+- new version
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.13-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
