@@ -4,7 +4,7 @@
 
 Name:               python-%{distname}
 Version:            1.0.7
-Release:            2%{?dist}
+Release:            3%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
 Group:              Development/Libraries
@@ -31,9 +31,9 @@ Requires:           python2-requests
 Requires:           python2-requests-oauthlib
 Requires:           python2-requests-toolbelt
 Requires:           python2-tlslite
-Requires:           python-magic
-Requires:           python-ipython-console
-Requires:           python-six
+Requires:           python2-magic
+Requires:           python2-ipython
+Requires:           python2-six
 %{?python_provide:%python_provide python2-%{distname}}
 
 %description -n python2-%{distname}
@@ -105,6 +105,10 @@ ln -sf %{_bindir}/jirashell-2 %{buildroot}/%{_bindir}/jirashell
 
 
 %changelog
+* Fri Jan 19 2018 Iryna Shcherbina <ishcherb@redhat.com> - 1.0.7-3
+- Update Python 2 dependency declarations to new packaging standards
+  (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
