@@ -1,6 +1,6 @@
-From baa04780f473ceb1dcd2af43dd6ee61fd56b3a2b Mon Sep 17 00:00:00 2001
+From 6d1b824b6f90207006c6f27ff8b1bb869450c949 Mon Sep 17 00:00:00 2001
 From: Ralph Bean <rbean@redhat.com>
-Date: Tue, 10 May 2016 13:00:32 -0400
+Date: Fri, 25 May 2018 13:47:34 -0400
 Subject: [PATCH] no mime detection
 
 ---
@@ -8,10 +8,10 @@ Subject: [PATCH] no mime detection
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/jira/client.py b/jira/client.py
-index 6dc54d5..110f453 100644
+index cfd44dc..d1042f7 100644
 --- a/jira/client.py
 +++ b/jira/client.py
-@@ -234,7 +234,11 @@ class JIRA(object):
+@@ -421,7 +421,11 @@ class JIRA(object):
          if len(context_path) > 0:
              self._options['context_path'] = context_path
  
@@ -23,7 +23,7 @@ index 6dc54d5..110f453 100644
 +        self._magic = None
  
          if oauth:
-             self._create_oauth_session(oauth)
+             self._create_oauth_session(oauth, timeout)
 -- 
-2.5.5
+2.17.0
 
