@@ -4,7 +4,7 @@
 
 Name:               python-%{distname}
 Version:            1.0.15
-Release:            1%{?dist}
+Release:            2%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
 Group:              Development/Libraries
@@ -40,6 +40,8 @@ Requires:           python2-tlslite
 Requires:           python2-magic
 Requires:           python2-ipython
 Requires:           python2-six
+Requires:           python2-pbr
+Requires:           python2-defusedxml
 %{?python_provide:%python_provide python2-%{distname}}
 
 %description -n python2-%{distname}
@@ -55,6 +57,8 @@ Requires:           python3-tlslite
 Requires:           python3-magic
 Requires:           python3-ipython-console
 Requires:           python3-six
+Requires:           python3-pbr
+Requires:           python3-defusedxml
 %{?python_provide:%python_provide python3-%{distname}}
 
 %description -n python3-%{distname}
@@ -114,6 +118,9 @@ ln -sf %{_bindir}/jirashell-2 %{buildroot}/%{_bindir}/jirashell
 
 
 %changelog
+* Fri Jun 08 2018 Ralph Bean <rbean@redhat.com> - 1.0.15-2
+- Add missing deps.  https://bugzilla.redhat.com/show_bug.cgi?id=1589006
+
 * Fri May 25 2018 Ralph Bean <rbean@redhat.com> - 1.0.15-1
 - new version
 
