@@ -36,7 +36,6 @@ Summary:            %{summary}
 Requires:           python2-requests
 Requires:           python2-requests-oauthlib
 Requires:           python2-requests-toolbelt
-Requires:           python2-tlslite
 Requires:           python2-magic
 Requires:           python2-ipython
 Requires:           python2-six
@@ -53,7 +52,6 @@ Summary:            %{summary}
 Requires:           python3-requests
 Requires:           python3-requests-oauthlib
 Requires:           python3-requests-toolbelt
-Requires:           python3-tlslite
 Requires:           python3-magic
 Requires:           python3-ipython-console
 Requires:           python3-six
