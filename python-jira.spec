@@ -4,7 +4,7 @@
 
 Name:               python-%{distname}
 Version:            1.0.15
-Release:            2%{?dist}
+Release:            3%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
 Group:              Development/Libraries
@@ -116,6 +116,9 @@ ln -sf %{_bindir}/jirashell-2 %{buildroot}/%{_bindir}/jirashell
 
 
 %changelog
+* Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 1.0.15-3
+- Rebuilt for Python 3.7
+
 * Fri Jun 08 2018 Ralph Bean <rbean@redhat.com> - 1.0.15-2
 - Add missing deps.  https://bugzilla.redhat.com/show_bug.cgi?id=1589006
 
