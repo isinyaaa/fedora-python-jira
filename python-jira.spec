@@ -3,8 +3,8 @@
 %global eggname jira
 
 Name:               python-%{distname}
-Version:            1.0.15
-Release:            4%{?dist}
+Version:            2.0.0
+Release:            1%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
 Group:              Development/Libraries
@@ -67,9 +67,6 @@ A library to ease use of the JIRA 5 REST APIs.
 %setup -q -n %{distname}-%{version}
 %patch0 -p1
 
-sed -i 's/tools.jirashell/jira.tools.jirashell/g' setup.py
-sed -i "s/'ordereddict'//" setup.py
-
 # Remove bundled egg-info in case it exists
 rm -rf %{distname}.egg-info
 
@@ -83,15 +80,12 @@ sed -i -e '/^#!\//, 1d' %{modname}/{client,config,jirashell}.py
 
 
 %install
-%py3_install
-mv %{buildroot}/%{_bindir}/jirashell %{buildroot}/%{_bindir}/jirashell-%{python3_version}
-ln -sf %{_bindir}/jirashell-%{python3_version} %{buildroot}/%{_bindir}/jirashell-3
-
 %py2_install
-mv %{buildroot}/%{_bindir}/jirashell %{buildroot}/%{_bindir}/jirashell-%{python2_version}
-ln -sf %{_bindir}/jirashell-%{python2_version} %{buildroot}/%{_bindir}/jirashell-2
-ln -sf %{_bindir}/jirashell-2 %{buildroot}/%{_bindir}/jirashell
+# Package only py3 version of executable.
+rm %{buildroot}%{_bindir}/*
+%py3_install
 
+# No tests in PYPI package.
 # %%check
 # python2 -m pytest
 # python3 -m pytest
@@ -99,9 +93,6 @@ ln -sf %{_bindir}/jirashell-2 %{buildroot}/%{_bindir}/jirashell
 %files -n python2-%{distname}
 %doc PKG-INFO
 %license LICENSE
-%{_bindir}/jirashell
-%{_bindir}/jirashell-2
-%{_bindir}/jirashell-%{python2_version}
 %{python2_sitelib}/%{modname}/
 %{python2_sitelib}/%{eggname}-%{version}*
 
@@ -109,13 +100,15 @@ ln -sf %{_bindir}/jirashell-2 %{buildroot}/%{_bindir}/jirashell
 %files -n python3-%{distname}
 %doc PKG-INFO
 %license LICENSE
-%{_bindir}/jirashell-3
-%{_bindir}/jirashell-%{python3_version}
+%{_bindir}/jirashell
 %{python3_sitelib}/%{modname}/
 %{python3_sitelib}/%{eggname}-%{version}*
 
 
 %changelog
+* Tue Jul 17 2018 Iryna Shcherbina <shcherbina.iryna@gmail.com> - 2.0.0-1
+- Update to 2.0.0
+
 * Sat Jul 14 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.15-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
