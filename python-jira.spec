@@ -4,7 +4,7 @@
 
 Name:               python-%{distname}
 Version:            1.0.15
-Release:            3%{?dist}
+Release:            4%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
 Group:              Development/Libraries
@@ -116,6 +116,9 @@ ln -sf %{_bindir}/jirashell-2 %{buildroot}/%{_bindir}/jirashell
 
 
 %changelog
+* Sat Jul 14 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.15-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 1.0.15-3
 - Rebuilt for Python 3.7
 
