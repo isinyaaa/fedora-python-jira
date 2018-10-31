@@ -4,7 +4,7 @@
 
 Name:               python-%{distname}
 Version:            2.0.0
-Release:            1%{?dist}
+Release:            2%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
 Group:              Development/Libraries
@@ -15,11 +15,7 @@ Patch0:             python-jira-no-mime-detection.patch
 
 BuildArch:          noarch
 
-BuildRequires:      python2-devel
-BuildRequires:      python2-setuptools
-BuildRequires:      python2-sphinx
-BuildRequires:      python2-pytest-runner
-BuildRequires:      python2-pytest-cov
+BuildRequires:      python3-sphinx
 
 BuildRequires:      python3-devel
 BuildRequires:      python3-setuptools
@@ -28,22 +24,6 @@ BuildRequires:      python3-pytest-runner
 BuildRequires:      python3-pytest-cov
 
 %description
-A library to ease use of the JIRA 5 REST APIs.
-
-
-%package -n python2-%{distname}
-Summary:            %{summary}
-Requires:           python2-requests
-Requires:           python2-requests-oauthlib
-Requires:           python2-requests-toolbelt
-Requires:           python2-magic
-Requires:           python2-ipython
-Requires:           python2-six
-Requires:           python2-pbr
-Requires:           python2-defusedxml
-%{?python_provide:%python_provide python2-%{distname}}
-
-%description -n python2-%{distname}
 A library to ease use of the JIRA 5 REST APIs.
 
 
@@ -75,27 +55,15 @@ sed -i -e '/^#!\//, 1d' %{modname}/{client,config,jirashell}.py
 
 
 %build
-%py2_build
 %py3_build
 
 
 %install
-%py2_install
-# Package only py3 version of executable.
-rm %{buildroot}%{_bindir}/*
 %py3_install
 
 # No tests in PYPI package.
 # %%check
-# python2 -m pytest
 # python3 -m pytest
-
-%files -n python2-%{distname}
-%doc PKG-INFO
-%license LICENSE
-%{python2_sitelib}/%{modname}/
-%{python2_sitelib}/%{eggname}-%{version}*
-
 
 %files -n python3-%{distname}
 %doc PKG-INFO
@@ -106,6 +74,10 @@ rm %{buildroot}%{_bindir}/*
 
 
 %changelog
+* Wed Oct 31 2018 Miro Hrončok <mhroncok@redhat.com> - 2.0.0-2
+- Subpackage python2-jira has been removed
+  See https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
+
 * Tue Jul 17 2018 Iryna Shcherbina <shcherbina.iryna@gmail.com> - 2.0.0-1
 - Update to 2.0.0
 
