@@ -7,7 +7,6 @@ Version:            2.0.0
 Release:            2%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
-Group:              Development/Libraries
 License:            BSD
 URL:                https://pypi.io/project/%{distname}
 Source0:            https://files.pythonhosted.org/packages/source/j/%{distname}/%{distname}-%{version}.tar.gz
