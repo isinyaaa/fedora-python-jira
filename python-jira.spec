@@ -4,7 +4,7 @@
 
 Name:               python-%{distname}
 Version:            2.0.0
-Release:            3%{?dist}
+Release:            4%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
 License:            BSD
@@ -73,6 +73,9 @@ sed -i -e '/^#!\//, 1d' %{modname}/{client,config,jirashell}.py
 
 
 %changelog
+* Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
