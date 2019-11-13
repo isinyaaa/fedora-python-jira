@@ -4,7 +4,7 @@
 
 Name:               python-%{distname}
 Version:            2.0.0
-Release:            5%{?dist}
+Release:            6%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
 License:            BSD
@@ -18,8 +18,10 @@ BuildRequires:      python3-sphinx
 
 BuildRequires:      python3-devel
 BuildRequires:      python3-setuptools
+BuildRequires:      python3-pbr
 BuildRequires:      python3-sphinx
 BuildRequires:      python3-pytest-runner
+
 BuildRequires:      python3-pytest-cov
 
 %description
@@ -73,6 +75,9 @@ sed -i -e '/^#!\//, 1d' %{modname}/{client,config,jirashell}.py
 
 
 %changelog
+* Wed Nov 13 2019 Steve Traylen <steve.traylen@cern.ch> - 2.0.0-6
+- Add new BR of pbr.
+
 * Mon Aug 19 2019 Miro Hrončok <mhroncok@redhat.com> - 2.0.0-5
 - Rebuilt for Python 3.8
 
