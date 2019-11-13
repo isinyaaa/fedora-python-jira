@@ -4,7 +4,7 @@
 
 Name:               python-%{distname}
 Version:            2.0.0
-Release:            6%{?dist}
+Release:            7%{?dist}
 Summary:            A library to ease use of the JIRA 5 REST APIs
 
 License:            BSD
@@ -14,31 +14,31 @@ Patch0:             python-jira-no-mime-detection.patch
 
 BuildArch:          noarch
 
-BuildRequires:      python3-sphinx
+BuildRequires:      python%{python3_pkgversion}-sphinx
 
-BuildRequires:      python3-devel
-BuildRequires:      python3-setuptools
-BuildRequires:      python3-pbr
-BuildRequires:      python3-sphinx
-BuildRequires:      python3-pytest-runner
+BuildRequires:      python%{python3_pkgversion}-devel
+BuildRequires:      python%{python3_pkgversion}-setuptools
+BuildRequires:      python%{python3_pkgversion}-pbr
+BuildRequires:      python%{python3_pkgversion}-sphinx
+BuildRequires:      python%{python3_pkgversion}-pytest-runner
 
-BuildRequires:      python3-pytest-cov
+BuildRequires:      python%{python3_pkgversion}-pytest-cov
 
 %description
 A library to ease use of the JIRA 5 REST APIs.
 
 
-%package -n python3-%{distname}
+%package -n python%{python3_pkgversion}-%{distname}
 Summary:            %{summary}
-Requires:           python3-requests
-Requires:           python3-requests-oauthlib
-Requires:           python3-requests-toolbelt
-Requires:           python3-magic
-Requires:           python3-ipython-console
-Requires:           python3-six
-Requires:           python3-pbr
-Requires:           python3-defusedxml
-%{?python_provide:%python_provide python3-%{distname}}
+Requires:           python%{python3_pkgversion}-requests
+Requires:           python%{python3_pkgversion}-requests-oauthlib
+Requires:           python%{python3_pkgversion}-requests-toolbelt
+Requires:           python%{python3_pkgversion}-magic
+Requires:           python%{python3_pkgversion}-ipython-console
+Requires:           python%{python3_pkgversion}-six
+Requires:           python%{python3_pkgversion}-pbr
+Requires:           python%{python3_pkgversion}-defusedxml
+%{?python_provide:%python_provide python%{python3_pkgversion}-%{distname}}
 
 %description -n python3-%{distname}
 A library to ease use of the JIRA 5 REST APIs.
@@ -66,7 +66,7 @@ sed -i -e '/^#!\//, 1d' %{modname}/{client,config,jirashell}.py
 # %%check
 # python3 -m pytest
 
-%files -n python3-%{distname}
+%files -n python%{python3_pkgversion}-%{distname}
 %doc PKG-INFO
 %license LICENSE
 %{_bindir}/jirashell
@@ -75,6 +75,9 @@ sed -i -e '/^#!\//, 1d' %{modname}/{client,config,jirashell}.py
 
 
 %changelog
+* Wed Nov 13 2019 Steve Traylen <steve.traylen@cern.ch> - 2.0.0-7
+- First epel8 build
+
 * Wed Nov 13 2019 Steve Traylen <steve.traylen@cern.ch> - 2.0.0-6
 - Add new BR of pbr.
 
