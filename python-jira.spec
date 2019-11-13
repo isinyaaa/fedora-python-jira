@@ -34,7 +34,6 @@ Requires:           python%{python3_pkgversion}-requests
 Requires:           python%{python3_pkgversion}-requests-oauthlib
 Requires:           python%{python3_pkgversion}-requests-toolbelt
 Requires:           python%{python3_pkgversion}-magic
-Requires:           python%{python3_pkgversion}-ipython-console
 Requires:           python%{python3_pkgversion}-six
 Requires:           python%{python3_pkgversion}-pbr
 Requires:           python%{python3_pkgversion}-defusedxml
@@ -62,6 +61,11 @@ sed -i -e '/^#!\//, 1d' %{modname}/{client,config,jirashell}.py
 %install
 %py3_install
 
+# ipython is not available as a dependency yet so no shell.
+# https://bugzilla.redhat.com/show_bug.cgi?id=1758271
+rm -f %{buildroot}%{_bindir}/jirashell
+rm -f %{buildroot}%{python3_sitlib}/jira/jirashell.py*
+
 # No tests in PYPI package.
 # %%check
 # python3 -m pytest
@@ -69,7 +73,6 @@ sed -i -e '/^#!\//, 1d' %{modname}/{client,config,jirashell}.py
 %files -n python%{python3_pkgversion}-%{distname}
 %doc PKG-INFO
 %license LICENSE
-%{_bindir}/jirashell
 %{python3_sitelib}/%{modname}/
 %{python3_sitelib}/%{eggname}-%{version}*
 
