@@ -1,0 +1,32 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 3b9e229..8c077f1 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,8 +1,7 @@
+ [build-system]
+ requires = [
+-  "setuptools >= 41.0.0",
++  "setuptools >= 60.0.0",
+   "setuptools_scm >= 1.15.0",
+-  "setuptools_scm_git_archive >= 1.0",
+   "wheel",
+ ]
+ requires-python = ">3.5"
+diff --git a/setup.cfg b/setup.cfg
+index eb40109..23605fa 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -47,12 +47,11 @@ packages = find:
+ include_package_data = True
+ zip_safe = False
+ setup_requires = 
+-	setuptools_scm >= 1.15.0
+ 	setuptools_scm_git_archive >= 1.0
+ install_requires = 
+ 	defusedxml
+ 	keyring
+-	requests-oauthlib>=1.1.0
++	requests-oauthlib>=1.0.0
+ 	requests>=2.10.0
+ 	requests_toolbelt
+ 	typing_extensions>=3.7.4.2
