@@ -3,44 +3,46 @@
 %global eggname jira
 
 Name:               python-%{distname}
-Version:            2.0.0
-Release:            7%{?dist}
-Summary:            A library to ease use of the JIRA 5 REST APIs
+Version:            3.2.0
+Release:            1%{?dist}
+Summary:            A library to ease use of the JIRA via REST APIs
 
 License:            BSD
 URL:                https://pypi.io/project/%{distname}
-Source0:            https://files.pythonhosted.org/packages/source/j/%{distname}/%{distname}-%{version}.tar.gz
+Source0:            %{pypi_source jira}
 Patch0:             python-jira-no-mime-detection.patch
 
 BuildArch:          noarch
 
-BuildRequires:      python%{python3_pkgversion}-sphinx
+BuildRequires:      python3-sphinx
 
-BuildRequires:      python%{python3_pkgversion}-devel
-BuildRequires:      python%{python3_pkgversion}-setuptools
-BuildRequires:      python%{python3_pkgversion}-pbr
-BuildRequires:      python%{python3_pkgversion}-sphinx
-BuildRequires:      python%{python3_pkgversion}-pytest-runner
+BuildRequires:      python3-devel
+BuildRequires:      python3-setuptools
+BuildRequires:      python3-setuptools_scm_git_archive
+BuildRequires:      python3-pbr
+BuildRequires:      python3-sphinx
+BuildRequires:      python3-pytest-runner
 
-BuildRequires:      python%{python3_pkgversion}-pytest-cov
+BuildRequires:      python3-pytest-cov
 
 %description
-A library to ease use of the JIRA 5 REST APIs.
+A library to ease use of the JIRA via REST APIs.
 
 
-%package -n python%{python3_pkgversion}-%{distname}
+%package -n python3-%{distname}
 Summary:            %{summary}
-Requires:           python%{python3_pkgversion}-requests
-Requires:           python%{python3_pkgversion}-requests-oauthlib
-Requires:           python%{python3_pkgversion}-requests-toolbelt
-Requires:           python%{python3_pkgversion}-magic
-Requires:           python%{python3_pkgversion}-six
-Requires:           python%{python3_pkgversion}-pbr
-Requires:           python%{python3_pkgversion}-defusedxml
-%{?python_provide:%python_provide python%{python3_pkgversion}-%{distname}}
+Requires:           python3-requests
+Requires:           python3-requests-oauthlib
+Requires:           python3-requests-toolbelt
+Requires:           python3-magic
+Requires:           python3-ipython-console
+Requires:           python3-six
+Requires:           python3-pbr
+Requires:           python3-defusedxml
+%{?python_provide:%python_provide python3-%{distname}}
 
 %description -n python3-%{distname}
-A library to ease use of the JIRA 5 REST APIs.
+A library to ease use of the JIRA via REST APIs.
 
 
 %prep
@@ -61,23 +63,22 @@ sed -i -e '/^#!\//, 1d' %{modname}/{client,config,jirashell}.py
 %install
 %py3_install
 
-# ipython is not available as a dependency yet so no shell.
-# https://bugzilla.redhat.com/show_bug.cgi?id=1758271
-rm -f %{buildroot}%{_bindir}/jirashell
-rm -f %{buildroot}%{python3_sitlib}/jira/jirashell.py*
-
 # No tests in PYPI package.
 # %%check
 # python3 -m pytest
 
-%files -n python%{python3_pkgversion}-%{distname}
+%files -n python3-%{distname}
 %doc PKG-INFO
 %license LICENSE
+%{_bindir}/jirashell
 %{python3_sitelib}/%{modname}/
 %{python3_sitelib}/%{eggname}-%{version}*
 
 
 %changelog
+* Mon Mar 13 2023 Isabella do Amaral <idoamara@redhat.com> - 3.2.0-1
+- Update to 3.2.0
+
 * Wed Nov 13 2019 Steve Traylen <steve.traylen@cern.ch> - 2.0.0-7
 - First epel8 build
 
